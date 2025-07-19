@@ -1,0 +1,311 @@
+# 数据分析场景 - 工具配置
+# 针对数据处理、分析和可视化的专用工具集
+
+tools_config:
+  # 启用的工具类别
+  enabled_categories:
+    - "data_processing"     # 数据处理工具
+    - "statistical_analysis" # 统计分析工具
+    - "visualization"       # 数据可视化工具
+    - "data_validation"     # 数据验证工具
+    - "calculation"         # 计算工具
+    - "reporting"          # 报告生成工具
+  
+  # 数据处理工具
+  data_processing:
+    # 数据清洗工具
+    data_cleaner:
+      enabled: true
+      description: "数据清洗和预处理"
+      functions:
+        - "remove_duplicates"
+        - "handle_missing_values"
+        - "outlier_detection"
+        - "data_normalization"
+        - "format_standardization"
+    
+    # 数据转换工具
+    data_transformer:
+      enabled: true
+      description: "数据格式转换"
+      supported_formats: ["csv", "excel", "json", "parquet", "sql"]
+      functions:
+        - "format_conversion"
+        - "encoding_detection"
+        - "schema_validation"
+    
+    # 数据聚合工具
+    data_aggregator:
+      enabled: true
+      description: "数据聚合和分组"
+      functions:
+        - "group_by_operations"
+        - "pivot_tables"
+        - "time_series_aggregation"
+        - "statistical_grouping"
+  
+  # 统计分析工具
+  statistical_analysis:
+    # 描述性统计工具
+    descriptive_stats:
+      enabled: true
+      description: "描述性统计分析"
+      functions:
+        - "central_tendency"    # 均值、中位数、众数
+        - "variability"        # 标准差、方差、四分位数
+        - "distribution_shape" # 偏度、峰度
+        - "correlation_analysis"
+    
+    # 推断性统计工具
+    inferential_stats:
+      enabled: true
+      description: "推断性统计分析"
+      functions:
+        - "hypothesis_testing"
+        - "confidence_intervals"
+        - "anova_analysis"
+        - "regression_analysis"
+        - "chi_square_tests"
+    
+    # 时间序列分析工具
+    time_series_analysis:
+      enabled: true
+      description: "时间序列分析"
+      functions:
+        - "trend_analysis"
+        - "seasonality_detection"
+        - "forecasting"
+        - "autocorrelation"
+        - "moving_averages"
+    
+    # 机器学习工具
+    ml_analysis:
+      enabled: true
+      description: "机器学习分析工具"
+      algorithms:
+        - "clustering"         # K-means, 层次聚类
+        - "classification"     # 决策树, 随机森林
+        - "regression"         # 线性回归, 多项式回归
+        - "dimensionality_reduction" # PCA, t-SNE
+  
+  # 数据可视化工具
+  visualization:
+    # 基础图表工具
+    basic_charts:
+      enabled: true
+      description: "基础统计图表"
+      chart_types:
+        - "bar_chart"
+        - "line_chart"
+        - "scatter_plot"
+        - "histogram"
+        - "box_plot"
+        - "pie_chart"
+    
+    # 高级可视化工具
+    advanced_visualization:
+      enabled: true
+      description: "高级数据可视化"
+      chart_types:
+        - "heatmap"
+        - "treemap"
+        - "sankey_diagram"
+        - "parallel_coordinates"
+        - "violin_plot"
+        - "correlation_matrix"
+    
+    # 交互式可视化
+    interactive_viz:
+      enabled: false  # 默认关闭，需要前端支持
+      description: "交互式可视化"
+      libraries: ["plotly", "bokeh", "dash"]
+    
+    # 图表导出工具
+    chart_exporter:
+      enabled: true
+      description: "图表导出工具"
+      formats: ["png", "pdf", "svg", "html"]
+      resolution: "300dpi"
+  
+  # 数据验证工具
+  data_validation:
+    # 数据质量检查
+    quality_checker:
+      enabled: true
+      description: "数据质量评估"
+      checks:
+        - "completeness_check"
+        - "accuracy_check"
+        - "consistency_check"
+        - "validity_check"
+        - "uniqueness_check"
+    
+    # 数据完整性验证
+    integrity_validator:
+      enabled: true
+      description: "数据完整性验证"
+      functions:
+        - "schema_validation"
+        - "referential_integrity"
+        - "business_rules_validation"
+    
+    # 异常检测工具
+    anomaly_detector:
+      enabled: true
+      description: "数据异常检测"
+      methods:
+        - "statistical_outliers"
+        - "isolation_forest"
+        - "z_score_detection"
+        - "iqr_method"
+  
+  # 计算工具
+  calculation:
+    # 数学计算工具
+    math_calculator:
+      enabled: true
+      description: "数学计算功能"
+      functions:
+        - "basic_arithmetic"
+        - "statistical_functions"
+        - "financial_calculations"
+        - "probability_calculations"
+    
+    # 业务指标计算
+    business_metrics:
+      enabled: true
+      description: "业务指标计算"
+      metrics:
+        - "growth_rate"
+        - "conversion_rate"
+        - "retention_rate"
+        - "roi_calculation"
+        - "churn_rate"
+        - "customer_lifetime_value"
+    
+    # 财务计算工具
+    financial_calculator:
+      enabled: true
+      description: "财务分析计算"
+      functions:
+        - "npv_calculation"
+        - "irr_calculation"
+        - "depreciation"
+        - "compound_interest"
+        - "ratio_analysis"
+  
+  # 报告生成工具
+  reporting:
+    # 报告模板引擎
+    report_generator:
+      enabled: true
+      description: "自动报告生成"
+      templates:
+        - "executive_summary"
+        - "detailed_analysis"
+        - "trend_report"
+        - "comparison_report"
+      formats: ["pdf", "html", "docx"]
+    
+    # 图表集成工具
+    chart_integrator:
+      enabled: true
+      description: "图表集成到报告"
+      auto_layout: true
+      caption_generation: true
+    
+    # 数据表格格式化
+    table_formatter:
+      enabled: true
+      description: "数据表格美化"
+      features:
+        - "conditional_formatting"
+        - "auto_styling"
+        - "summary_rows"
+        - "pagination"
+
+# 数据源连接配置
+data_sources:
+  # 数据库连接
+  databases:
+    enabled: false  # 需要配置具体连接信息
+    supported_types: ["mysql", "postgresql", "sqlite", "mongodb"]
+    connection_pool_size: 5
+    timeout: 30
+  
+  # 文件数据源
+  file_sources:
+    enabled: true
+    supported_formats: ["csv", "excel", "json", "parquet"]
+    max_file_size: "100MB"
+    encoding_detection: true
+  
+  # API数据源
+  api_sources:
+    enabled: false  # 需要配置API密钥
+    rate_limiting: true
+    cache_responses: true
+    timeout: 60
+
+# 性能优化配置
+performance:
+  # 并行处理
+  parallel_processing:
+    enabled: true
+    max_workers: 4
+    chunk_size: 10000
+  
+  # 内存管理
+  memory_management:
+    max_memory_usage: "2GB"
+    memory_efficient_mode: true
+    garbage_collection: true
+  
+  # 缓存配置
+  caching:
+    enabled: true
+    cache_intermediate_results: true
+    cache_duration: 3600  # 1小时
+    max_cache_size: "500MB"
+
+# 工具优先级配置
+priorities:
+  high_priority:
+    - "data_cleaner"
+    - "descriptive_stats"
+    - "quality_checker"
+    - "math_calculator"
+  
+  medium_priority:
+    - "basic_charts"
+    - "data_transformer"
+    - "business_metrics"
+    - "report_generator"
+  
+  low_priority:
+    - "ml_analysis"
+    - "interactive_viz"
+    - "advanced_visualization"
+
+# 安全配置
+security:
+  # 数据脱敏
+  data_masking:
+    enabled: true
+    mask_pii: true
+    mask_financial_data: true
+  
+  # 访问控制
+  access_control:
+    enabled: true
+    role_based: true
+    audit_logging: true
+
+# 日志配置
+logging:
+  level: "INFO"
+  log_file: "logs/data_analysis_tools.log"
+  log_tool_usage: true
+  log_performance: true
+  log_data_operations: true
+  log_calculation_steps: true 

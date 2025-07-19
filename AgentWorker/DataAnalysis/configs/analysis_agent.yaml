@@ -1,0 +1,281 @@
+# 数据分析代理配置
+# 专门用于数据分析任务的Agent配置
+
+agent_config:
+  # 基本信息
+  name: "data_analysis_agent"
+  type: "analysis_specialist"
+  version: "1.0.0"
+  description: "专业的数据分析代理，擅长数据处理、统计分析和洞察生成"
+  
+  # 代理能力配置
+  capabilities:
+    # 核心分析能力
+    core_analysis:
+      - "descriptive_statistics"    # 描述性统计
+      - "inferential_statistics"   # 推断性统计
+      - "trend_analysis"           # 趋势分析
+      - "correlation_analysis"     # 相关性分析
+      - "regression_analysis"      # 回归分析
+      - "time_series_analysis"     # 时间序列分析
+    
+    # 数据处理能力
+    data_processing:
+      - "data_cleaning"            # 数据清洗
+      - "data_transformation"      # 数据转换
+      - "data_aggregation"         # 数据聚合
+      - "outlier_detection"        # 异常值检测
+      - "missing_value_handling"   # 缺失值处理
+    
+    # 可视化能力
+    visualization:
+      - "chart_generation"         # 图表生成
+      - "dashboard_creation"       # 仪表板创建
+      - "report_visualization"     # 报告可视化
+    
+    # 洞察生成能力
+    insight_generation:
+      - "pattern_recognition"      # 模式识别
+      - "anomaly_identification"   # 异常识别
+      - "business_insight"         # 商业洞察
+      - "recommendation_generation" # 建议生成
+  
+  # 专业领域
+  domains:
+    primary:
+      - "business_analytics"       # 商业分析
+      - "financial_analysis"      # 财务分析
+      - "marketing_analytics"     # 营销分析
+      - "operational_analytics"   # 运营分析
+    
+    secondary:
+      - "customer_analytics"      # 客户分析
+      - "product_analytics"       # 产品分析
+      - "risk_analysis"          # 风险分析
+      - "performance_analysis"    # 绩效分析
+  
+  # 分析方法论
+  methodologies:
+    # 统计方法
+    statistical_methods:
+      - "hypothesis_testing"      # 假设检验
+      - "confidence_intervals"    # 置信区间
+      - "anova"                   # 方差分析
+      - "chi_square_test"         # 卡方检验
+      - "t_test"                  # T检验
+    
+    # 机器学习方法
+    ml_methods:
+      - "clustering"              # 聚类分析
+      - "classification"          # 分类分析
+      - "regression_modeling"     # 回归建模
+      - "dimensionality_reduction" # 降维分析
+    
+    # 业务分析方法
+    business_methods:
+      - "cohort_analysis"         # 队列分析
+      - "funnel_analysis"         # 漏斗分析
+      - "a_b_testing"             # A/B测试
+      - "retention_analysis"      # 留存分析
+      - "churn_analysis"          # 流失分析
+  
+  # 输出格式
+  output_formats:
+    # 报告格式
+    reports:
+      - "executive_summary"       # 执行摘要
+      - "detailed_analysis"       # 详细分析
+      - "technical_report"        # 技术报告
+      - "presentation_slides"     # 演示文稿
+    
+    # 数据格式
+    data_outputs:
+      - "csv_files"              # CSV文件
+      - "excel_workbooks"        # Excel工作簿
+      - "json_data"              # JSON数据
+      - "database_tables"        # 数据库表
+    
+    # 可视化格式
+    visualizations:
+      - "static_charts"          # 静态图表
+      - "interactive_dashboards" # 交互式仪表板
+      - "infographics"           # 信息图表
+  
+  # 质量标准
+  quality_standards:
+    # 数据质量要求
+    data_quality:
+      completeness_threshold: 0.95    # 完整性阈值
+      accuracy_threshold: 0.98        # 准确性阈值
+      consistency_threshold: 0.99     # 一致性阈值
+    
+    # 分析质量要求
+    analysis_quality:
+      statistical_significance: 0.05  # 统计显著性水平
+      confidence_level: 0.95          # 置信水平
+      effect_size_threshold: 0.3      # 效应量阈值
+    
+    # 报告质量要求
+    report_quality:
+      clarity_score: 8.0              # 清晰度评分
+      completeness_score: 9.0         # 完整性评分
+      actionability_score: 8.5        # 可操作性评分
+  
+  # 工作流程
+  workflows:
+    # 标准分析流程
+    standard_analysis:
+      steps:
+        - name: "data_exploration"
+          description: "数据探索和理解"
+          duration: "15min"
+        - name: "data_cleaning"
+          description: "数据清洗和预处理"
+          duration: "20min"
+        - name: "analysis_execution"
+          description: "执行分析和计算"
+          duration: "30min"
+        - name: "result_interpretation"
+          description: "结果解释和洞察生成"
+          duration: "20min"
+        - name: "report_generation"
+          description: "生成分析报告"
+          duration: "15min"
+    
+    # 快速分析流程
+    quick_analysis:
+      steps:
+        - name: "rapid_exploration"
+          description: "快速数据探索"
+          duration: "5min"
+        - name: "key_metrics_calculation"
+          description: "关键指标计算"
+          duration: "10min"
+        - name: "summary_generation"
+          description: "生成分析摘要"
+          duration: "10min"
+    
+    # 深度分析流程
+    deep_analysis:
+      steps:
+        - name: "comprehensive_exploration"
+          description: "全面数据探索"
+          duration: "30min"
+        - name: "advanced_preprocessing"
+          description: "高级数据预处理"
+          duration: "45min"
+        - name: "multi_method_analysis"
+          description: "多方法分析"
+          duration: "60min"
+        - name: "cross_validation"
+          description: "交叉验证和检验"
+          duration: "30min"
+        - name: "comprehensive_reporting"
+          description: "生成综合报告"
+          duration: "45min"
+  
+  # 性能指标
+  performance_metrics:
+    # 准确性指标
+    accuracy_metrics:
+      - "prediction_accuracy"     # 预测准确率
+      - "classification_precision" # 分类精确率
+      - "regression_r_squared"    # 回归决定系数
+    
+    # 效率指标
+    efficiency_metrics:
+      - "processing_time"         # 处理时间
+      - "memory_usage"           # 内存使用
+      - "computation_cost"       # 计算成本
+    
+    # 质量指标
+    quality_metrics:
+      - "insight_relevance"      # 洞察相关性
+      - "recommendation_value"   # 建议价值
+      - "user_satisfaction"     # 用户满意度
+  
+  # 学习和适应
+  learning_config:
+    # 反馈学习
+    feedback_learning:
+      enabled: true
+      feedback_types:
+        - "user_ratings"         # 用户评分
+        - "outcome_tracking"     # 结果跟踪
+        - "expert_validation"    # 专家验证
+    
+    # 模式学习
+    pattern_learning:
+      enabled: true
+      pattern_types:
+        - "data_patterns"        # 数据模式
+        - "analysis_patterns"    # 分析模式
+        - "business_patterns"    # 业务模式
+    
+    # 持续改进
+    continuous_improvement:
+      enabled: true
+      improvement_areas:
+        - "analysis_methods"     # 分析方法
+        - "visualization_quality" # 可视化质量
+        - "insight_generation"   # 洞察生成
+  
+  # 协作配置
+  collaboration:
+    # 与其他Agent协作
+    agent_collaboration:
+      enabled: true
+      collaboration_types:
+        - "data_sharing"         # 数据共享
+        - "method_exchange"      # 方法交换
+        - "result_validation"    # 结果验证
+    
+    # 人机协作
+    human_collaboration:
+      enabled: true
+      interaction_modes:
+        - "guided_analysis"      # 引导式分析
+        - "interactive_exploration" # 交互式探索
+        - "expert_consultation"  # 专家咨询
+
+# 安全和隐私
+security:
+  # 数据安全
+  data_security:
+    encryption_required: true
+    access_control: "role_based"
+    audit_logging: true
+  
+  # 隐私保护
+  privacy_protection:
+    data_anonymization: true
+    pii_detection: true
+    consent_management: true
+
+# 监控和日志
+monitoring:
+  # 性能监控
+  performance_monitoring:
+    enabled: true
+    metrics_collection: true
+    alerting: true
+  
+  # 质量监控
+  quality_monitoring:
+    enabled: true
+    quality_checks: true
+    deviation_alerts: true
+  
+  # 使用监控
+  usage_monitoring:
+    enabled: true
+    usage_analytics: true
+    resource_tracking: true
+
+# 日志配置
+logging:
+  level: "INFO"
+  log_file: "logs/analysis_agent.log"
+  log_analysis_steps: true
+  log_decision_making: true
+  log_performance_metrics: true 

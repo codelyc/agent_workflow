@@ -1,0 +1,166 @@
+2025-07-20 15:53:37,805 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 15:53:37,808 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 15:53:37,813 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 15:55:17,675 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 15:55:17,679 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 15:55:17,684 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 15:56:12,309 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 15:56:12,312 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 15:56:12,319 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 17:52:43,299 - core.output_control.controller - INFO - 输出控制器初始化完成
+2025-07-20 17:52:43,299 - core.output_control.controller - INFO - 开始输出控制流程，输出类型: article
+2025-07-20 17:52:43,299 - core.output_control.controller - INFO - 开始检查约束，输出长度: 136
+2025-07-20 17:52:43,299 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,299 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,299 - core.output_control.controller - WARNING - 发现 1 个关键约束失败，尝试re-prompt
+2025-07-20 17:52:43,300 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,300 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,300 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,300 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,300 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,300 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,300 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,300 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,300 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,300 - core.output_control.controller - INFO - 开始验证输出，长度: 136
+2025-07-20 17:52:43,300 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,301 - core.output_control.controller - WARNING - 发现 1 个验证失败，尝试re-prompt
+2025-07-20 17:52:43,301 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,301 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,301 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,301 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,301 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,301 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,301 - core.output_control.controller - INFO - 开始后处理，原始长度: 136
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 后处理完成: 成功 3, 失败 0, 最终长度: 288
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 输出控制完成: 成功=False, 用时=0.00s
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 开始输出控制流程，输出类型: blog
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 开始检查约束，输出长度: 136
+2025-07-20 17:52:43,302 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,302 - core.output_control.controller - WARNING - 发现 1 个关键约束失败，尝试re-prompt
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,302 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,302 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,302 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,303 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 开始验证输出，长度: 136
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,303 - core.output_control.controller - WARNING - 发现 1 个验证失败，尝试re-prompt
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 开始后处理，原始长度: 136
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 后处理完成: 成功 3, 失败 0, 最终长度: 285
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 输出控制完成: 成功=False, 用时=0.00s
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 开始输出控制流程，输出类型: marketing
+2025-07-20 17:52:43,303 - core.output_control.controller - INFO - 开始检查约束，输出长度: 136
+2025-07-20 17:52:43,304 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,304 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,304 - core.output_control.controller - WARNING - 发现 1 个关键约束失败，尝试re-prompt
+2025-07-20 17:52:43,304 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,304 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,304 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,304 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,304 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,304 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,304 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,304 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,304 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,304 - core.output_control.controller - INFO - 开始验证输出，长度: 136
+2025-07-20 17:52:43,304 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,304 - core.output_control.controller - WARNING - 发现 1 个验证失败，尝试re-prompt
+2025-07-20 17:52:43,305 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,305 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,305 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,305 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,305 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,305 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,305 - core.output_control.controller - INFO - 开始后处理，原始长度: 136
+2025-07-20 17:52:43,306 - core.output_control.controller - INFO - 后处理完成: 成功 3, 失败 0, 最终长度: 307
+2025-07-20 17:52:43,306 - core.output_control.controller - INFO - 输出控制完成: 成功=False, 用时=0.00s
+2025-07-20 17:52:43,306 - core.output_control.controller - INFO - 开始输出控制流程，输出类型: article
+2025-07-20 17:52:43,306 - core.output_control.controller - INFO - 开始检查约束，输出长度: 136
+2025-07-20 17:52:43,306 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,306 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,306 - core.output_control.controller - WARNING - 发现 1 个关键约束失败，尝试re-prompt
+2025-07-20 17:52:43,307 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,307 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,307 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,307 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,307 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,307 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,307 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,307 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,307 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 开始验证输出，长度: 136
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,308 - core.output_control.controller - WARNING - 发现 1 个验证失败，尝试re-prompt
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 开始后处理，原始长度: 136
+2025-07-20 17:52:43,308 - core.output_control.controller - INFO - 后处理完成: 成功 3, 失败 0, 最终长度: 288
+2025-07-20 17:52:43,309 - core.output_control.controller - INFO - 输出控制完成: 成功=False, 用时=0.00s
+2025-07-20 17:52:43,309 - core.output_control.controller - INFO - 开始输出控制流程，输出类型: blog
+2025-07-20 17:52:43,309 - core.output_control.controller - INFO - 开始检查约束，输出长度: 136
+2025-07-20 17:52:43,309 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,309 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,309 - core.output_control.controller - WARNING - 发现 1 个关键约束失败，尝试re-prompt
+2025-07-20 17:52:43,309 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,309 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,309 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,310 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,310 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 开始验证输出，长度: 136
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,310 - core.output_control.controller - WARNING - 发现 1 个验证失败，尝试re-prompt
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,310 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,311 - core.output_control.controller - INFO - 开始后处理，原始长度: 136
+2025-07-20 17:52:43,311 - core.output_control.controller - INFO - 后处理完成: 成功 3, 失败 0, 最终长度: 285
+2025-07-20 17:52:43,311 - core.output_control.controller - INFO - 输出控制完成: 成功=False, 用时=0.00s
+2025-07-20 17:52:43,312 - core.output_control.controller - INFO - 开始输出控制流程，输出类型: marketing
+2025-07-20 17:52:43,312 - core.output_control.controller - INFO - 开始检查约束，输出长度: 136
+2025-07-20 17:52:43,312 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,312 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,312 - core.output_control.controller - WARNING - 发现 1 个关键约束失败，尝试re-prompt
+2025-07-20 17:52:43,312 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,312 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,312 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,312 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,312 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,312 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,313 - core.output_control.controller - INFO - 开始检查约束，输出长度: 135
+2025-07-20 17:52:43,313 - core.output_control.controller - WARNING - 必需约束失败: content_length
+2025-07-20 17:52:43,313 - core.output_control.controller - INFO - 约束检查完成: 失败 1, 警告 0, 总计 4
+2025-07-20 17:52:43,313 - core.output_control.controller - INFO - 开始验证输出，长度: 136
+2025-07-20 17:52:43,313 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,313 - core.output_control.controller - WARNING - 发现 1 个验证失败，尝试re-prompt
+2025-07-20 17:52:43,313 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,313 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,313 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,313 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,314 - core.output_control.controller - INFO - 开始验证输出，长度: 135
+2025-07-20 17:52:43,314 - core.output_control.controller - INFO - 验证完成: 失败 1, 警告 0, 总计 2
+2025-07-20 17:52:43,314 - core.output_control.controller - INFO - 开始后处理，原始长度: 136
+2025-07-20 17:52:43,314 - core.output_control.controller - INFO - 后处理完成: 成功 3, 失败 0, 最终长度: 307
+2025-07-20 17:52:43,314 - core.output_control.controller - INFO - 输出控制完成: 成功=False, 用时=0.00s

@@ -1,0 +1,280 @@
+# 代码助手场景 - Agent输出控制配置
+# 针对代码生成、代码解释、代码优化等的专门配置
+
+config_type: "output_control"
+version: "1.0"
+scenario: "code_assistant"
+created_at: "2025-01-19"
+
+# 全局设置
+global:
+  enabled: true
+  max_retry_attempts: 2  # 代码生成重试次数较少
+  timeout_seconds: 30
+  debug_mode: true  # 代码场景建议开启调试
+  save_intermediate_results: true
+
+# 前置约束配置 - 针对代码助手
+pre_constraints:
+  # 代码结构约束
+  content_constraints:
+    - name: "code_structure"
+      description: "代码必须包含必要的注释和说明"
+      type: "content"
+      required: true
+      required_elements: ["代码实现", "使用说明"]
+      case_sensitive: false
+    
+    - name: "security_check"
+      description: "禁止生成不安全或恶意代码"
+      type: "content"
+      required: true
+      blacklist_patterns: 
+        - "eval("
+        - "exec("
+        - "os.system"
+        - "subprocess.call"
+        - "rm -rf"
+        - "delete *"
+        - "drop table"
+        - "__import__"
+      case_sensitive: true
+      
+  # 长度约束 - 代码长度合理
+  length_constraints:
+    - name: "code_length"
+      description: "代码长度限制"
+      type: "length"
+      required: true
+      min_length: 20
+      max_length: 3000
+      
+  # 格式约束 - 代码格式
+  format_constraints:
+    - name: "code_format"
+      description: "使用正确的代码格式和语法高亮"
+      type: "format"
+      pattern: "```\\w+"
+      required: false
+      examples:
+        - "```python\n# 代码内容\nprint('Hello World')\n```"
+
+# 验证配置
+validation:
+  # 代码语法验证
+  structure_validation:
+    enabled: true
+    schema_validation: false
+    custom_validators:
+      - name: "python_syntax_checker"
+        type: "syntax"
+        language: "python"
+        
+      - name: "javascript_syntax_checker"
+        type: "syntax"
+        language: "javascript"
+    
+  # 代码质量验证
+  content_validation:
+    enabled: true
+    spell_check: false  # 代码中可能有特殊命名
+    grammar_check: false
+    fact_check: false
+    
+  # AI代码审查
+  ai_self_check:
+    enabled: true
+    model: "gpt-4o-mini"
+    check_prompts:
+      code_quality: |
+        请评估以下代码的质量：
+        
+        代码：
+        {output}
+        
+        评估标准：
+        1. 语法正确性 (1-10分)
+        2. 代码可读性 (1-10分)
+        3. 最佳实践 (1-10分)
+        4. 安全性 (1-10分)
+        
+        请以JSON格式回答：{"syntax": 数字, "readability": 数字, "best_practices": 数字, "security": 数字, "overall": 数字, "feedback": "详细反馈"}
+        
+      security_check: |
+        请检查代码的安全性：
+        
+        代码：
+        {output}
+        
+        安全检查要点：
+        1. 是否包含危险函数调用
+        2. 是否有潜在的注入风险
+        3. 是否有不当的权限使用
+        
+        请以JSON格式回答：{"secure": true/false, "risks": ["风险1", "风险2"], "suggestions": ["建议1", "建议2"]}
+
+# 后处理配置
+post_processing:
+  # 代码格式化
+  code_formatting:
+    enabled: true
+    auto_indent: true
+    add_syntax_highlighting: true
+    standardize_naming: false  # 避免破坏原有命名
+    
+  # 文本处理
+  text_processing:
+    enabled: true
+    strip_whitespace: true
+    normalize_line_endings: true
+    remove_empty_lines: false  # 保留代码中的空行
+    
+  # 代码补全
+  code_completion:
+    enabled: true
+    add_imports: true
+    add_docstrings: true
+    add_type_hints: false  # 可选功能
+    
+  # 安全处理
+  security_processing:
+    enabled: true
+    remove_dangerous_code: true
+    sanitize_inputs: true
+    add_security_comments: true
+
+# Re-prompt配置
+re_prompt:
+  enabled: true
+  max_attempts: 2
+  strategy: "conservative"  # 代码修改要保守
+  
+  templates:
+    code_improvement: |
+      你生成的代码需要改进。请根据以下反馈重新编写：
+      
+      原始需求：{original_question}
+      
+      代码问题：
+      {content_issues}
+      
+      改进要求：
+      1. 确保语法正确，可以正常运行
+      2. 添加必要的注释和文档
+      3. 遵循代码最佳实践
+      4. 确保代码安全性
+      
+      请重新编写改进后的代码：
+      
+    security_fix: |
+      你的代码存在安全问题。请修复后重新提供：
+      
+      原始需求：{original_question}
+      
+      安全问题：
+      {validation_errors}
+      
+      安全要求：
+      - 移除危险的函数调用
+      - 添加输入验证
+      - 使用安全的替代方案
+      
+      请提供安全的代码实现：
+
+# 输出类型特定配置
+output_types:
+  # 函数实现
+  function:
+    pre_constraints:
+      - name: "function_structure"
+        required_elements: ["函数定义", "参数说明", "返回值说明"]
+    post_processing:
+      - name: "add_docstring"
+        enabled: true
+        
+  # 类实现
+  class:
+    pre_constraints:
+      - name: "class_structure"
+        required_elements: ["类定义", "方法实现", "属性说明"]
+    post_processing:
+      - name: "add_class_documentation"
+        enabled: true
+        
+  # 脚本代码
+  script:
+    pre_constraints:
+      - name: "script_structure"
+        required_elements: ["主逻辑", "错误处理"]
+    post_processing:
+      - name: "add_main_guard"
+        enabled: true
+        
+  # API接口
+  api:
+    pre_constraints:
+      - name: "api_structure"
+        required_elements: ["路由定义", "请求处理", "响应格式"]
+    validation:
+      - name: "api_security_check"
+        enabled: true
+
+# 编程语言特定配置
+language_configs:
+  python:
+    style_guide: "PEP8"
+    max_line_length: 88
+    naming_convention: "snake_case"
+    docstring_style: "Google"
+    
+  javascript:
+    style_guide: "ESLint"
+    max_line_length: 100
+    naming_convention: "camelCase"
+    use_strict: true
+    
+  java:
+    style_guide: "Oracle"
+    max_line_length: 120
+    naming_convention: "camelCase"
+    access_modifiers: "explicit"
+
+# 代码质量标准
+quality_standards:
+  syntax_score: 9.0
+  readability_score: 8.0
+  best_practices_score: 8.0
+  security_score: 9.5
+  overall_threshold: 8.5
+
+# 安全规则
+security_rules:
+  # 禁用的危险函数
+  forbidden_functions:
+    - "eval"
+    - "exec"
+    - "compile"
+    - "__import__"
+  
+  # 需要警告的函数
+  warning_functions:
+    - "open"
+    - "subprocess"
+    - "os.system"
+    
+  # 必须的安全检查
+  required_checks:
+    - "input_validation"
+    - "output_sanitization"
+    - "error_handling"
+
+# 日志配置
+logging:
+  enabled: true
+  level: "DEBUG"  # 代码场景需要详细日志
+  log_file: "logs/code_assistant_output_control.log"
+  log_validation_details: true
+  log_processing_steps: true
+  log_re_prompt_attempts: true
+  log_syntax_checks: true
+  log_security_checks: true 

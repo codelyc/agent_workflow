@@ -1,0 +1,128 @@
+{
+  "task.task_a2d40904.result": {
+    "key": "task.task_a2d40904.result",
+    "value": {
+      "task_id": "task_a2d40904",
+      "success": false,
+      "execution_time": 0.001366,
+      "agent_name": "default_supervisor",
+      "timestamp": "2025-07-20T00:40:54.694793"
+    },
+    "memory_type": "task",
+    "created_at": "2025-07-20T00:40:54.694793",
+    "updated_at": "2025-07-20T00:40:54.694793",
+    "expires_at": null,
+    "metadata": {
+      "task_id": "task_a2d40904"
+    },
+    "tags": []
+  },
+  "task.batch_d79fa153_task_1.result": {
+    "key": "task.batch_d79fa153_task_1.result",
+    "value": {
+      "task_id": "batch_d79fa153_task_1",
+      "success": false,
+      "execution_time": 0.00103,
+      "agent_name": "default_supervisor",
+      "timestamp": "2025-07-20T00:40:54.696829"
+    },
+    "memory_type": "task",
+    "created_at": "2025-07-20T00:40:54.696829",
+    "updated_at": "2025-07-20T00:40:54.696829",
+    "expires_at": null,
+    "metadata": {
+      "task_id": "batch_d79fa153_task_1"
+    },
+    "tags": []
+  },
+  "task.batch_d79fa153_task_2.result": {
+    "key": "task.batch_d79fa153_task_2.result",
+    "value": {
+      "task_id": "batch_d79fa153_task_2",
+      "success": false,
+      "execution_time": 0.00103,
+      "agent_name": "default_supervisor",
+      "timestamp": "2025-07-20T00:40:54.696829"
+    },
+    "memory_type": "task",
+    "created_at": "2025-07-20T00:40:54.696829",
+    "updated_at": "2025-07-20T00:40:54.696829",
+    "expires_at": null,
+    "metadata": {
+      "task_id": "batch_d79fa153_task_2"
+    },
+    "tags": []
+  },
+  "task.batch_d79fa153_task_3.result": {
+    "key": "task.batch_d79fa153_task_3.result",
+    "value": {
+      "task_id": "batch_d79fa153_task_3",
+      "success": false,
+      "execution_time": 0.001043,
+      "agent_name": "default_supervisor",
+      "timestamp": "2025-07-20T00:40:54.697872"
+    },
+    "memory_type": "task",
+    "created_at": "2025-07-20T00:40:54.697872",
+    "updated_at": "2025-07-20T00:40:54.697872",
+    "expires_at": null,
+    "metadata": {
+      "task_id": "batch_d79fa153_task_3"
+    },
+    "tags": []
+  },
+  "task.batch_d79fa153.batch_result": {
+    "key": "task.batch_d79fa153.batch_result",
+    "value": {
+      "batch_id": "batch_d79fa153",
+      "total_tasks": 3,
+      "success_rate": 0.0,
+      "total_execution_time": 0.003079,
+      "timestamp": "2025-07-20T00:40:54.697872"
+    },
+    "memory_type": "task",
+    "created_at": "2025-07-20T00:40:54.697872",
+    "updated_at": "2025-07-20T00:40:54.697872",
+    "expires_at": null,
+    "metadata": {
+      "task_id": "batch_d79fa153"
+    },
+    "tags": []
+  },
+  "task.task_acdb160b.result": {
+    "key": "task.task_acdb160b.result",
+    "value": {
+      "task_id": "task_acdb160b",
+      "success": false,
+      "execution_time": 0.00101,
+      "agent_name": "default_supervisor",
+      "timestamp": "2025-07-20T00:40:54.700051"
+    },
+    "memory_type": "task",
+    "created_at": "2025-07-20T00:40:54.700051",
+    "updated_at": "2025-07-20T00:40:54.700051",
+    "expires_at": null,
+    "metadata": {
+      "task_id": "task_acdb160b"
+    },
+    "tags": []
+  },
+  "task.task_7c26b2e4.result": {
+    "key": "task.task_7c26b2e4.result",
+    "value": {
+      "task_id": "task_7c26b2e4",
+      "success": false,
+      "execution_time": 0.0,
+      "agent_name": "default_supervisor",
+      "timestamp": "2025-07-20T00:40:54.701055"
+    },
+    "memory_type": "task",
+    "created_at": "2025-07-20T00:40:54.701055",
+    "updated_at": "2025-07-20T00:40:54.701055",
+    "expires_at": null,
+    "metadata": {
+      "task_id": "task_7c26b2e4"
+    },
+    "tags": []
+  }
+}

@@ -1,0 +1,85 @@
+# 内容生成场景 - LLM配置
+# 针对文章、博客、营销文案等内容创作优化的LLM配置
+
+llm_config:
+  # 默认模型配置 - 内容生成推荐使用更强的模型
+  default_model: "gpt-4o-mini"
+  backup_model: "gpt-3.5-turbo"
+  
+  # 模型参数配置
+  model_parameters:
+    temperature: 0.7        # 适中的创造性，保持内容自然流畅
+    max_tokens: 4000        # 支持长文本生成
+    top_p: 0.9             # 稍高的多样性，避免重复
+    frequency_penalty: 0.1  # 轻微的重复惩罚
+    presence_penalty: 0.1   # 鼓励话题多样性
+  
+  # 内容生成特定配置
+  content_generation:
+    # 文章生成配置
+    article:
+      model: "gpt-4o-mini"
+      temperature: 0.6      # 文章需要更稳定的输出
+      max_tokens: 5000      # 支持长文章
+    
+    # 博客生成配置  
+    blog:
+      model: "gpt-4o-mini"
+      temperature: 0.8      # 博客可以更有个性
+      max_tokens: 3000
+    
+    # 营销文案配置
+    marketing:
+      model: "gpt-4o"       # 营销文案使用最强模型
+      temperature: 0.9      # 需要更多创意
+      max_tokens: 2000
+  
+  # 提供商配置
+  providers:
+    primary: "openai"
+    fallback: ["azure_openai", "anthropic"]
+  
+  # OpenAI配置
+  openai:
+    api_key_env: "OPENAI_API_KEY"
+    base_url: "https://api.openai.com/v1"
+    timeout: 60
+    max_retries: 3
+  
+  # Azure OpenAI配置 (备用)
+  azure_openai:
+    api_key_env: "AZURE_OPENAI_API_KEY"
+    endpoint_env: "AZURE_OPENAI_ENDPOINT"
+    api_version: "2024-02-01"
+    timeout: 60
+  
+  # Anthropic配置 (备用)
+  anthropic:
+    api_key_env: "ANTHROPIC_API_KEY"
+    timeout: 60
+  
+  # 内容审核配置
+  content_moderation:
+    enabled: true
+    provider: "openai"
+    block_harmful_content: true
+    sensitivity_level: "medium"
+  
+  # 缓存配置
+  caching:
+    enabled: true
+    cache_duration: 3600    # 1小时缓存
+    cache_similar_prompts: true
+  
+  # 速率限制
+  rate_limits:
+    requests_per_minute: 50
+    tokens_per_minute: 80000
+    concurrent_requests: 5
+
+# 日志配置
+logging:
+  level: "INFO"
+  log_file: "logs/content_generation_llm.log"
+  log_requests: true
+  log_responses: false    # 内容可能较长，避免日志过大 

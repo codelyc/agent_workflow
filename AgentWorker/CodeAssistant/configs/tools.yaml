@@ -1,0 +1,441 @@
+# 代码助手场景 - 工具配置
+# 针对代码开发、调试、测试和维护的专用工具集
+
+tools_config:
+  # 启用的工具类别
+  enabled_categories:
+    - "code_generation"     # 代码生成工具
+    - "code_analysis"       # 代码分析工具
+    - "syntax_checking"     # 语法检查工具
+    - "security_scanning"   # 安全扫描工具
+    - "testing"            # 测试工具
+    - "documentation"      # 文档工具
+    - "refactoring"        # 重构工具
+    - "debugging"          # 调试工具
+  
+  # 代码生成工具
+  code_generation:
+    # 函数生成器
+    function_generator:
+      enabled: true
+      description: "智能函数代码生成"
+      supported_languages: ["python", "javascript", "typescript", "java", "go", "rust", "c++"]
+      features:
+        - "type_inference"
+        - "docstring_generation"
+        - "error_handling"
+        - "unit_test_generation"
+    
+    # 类生成器
+    class_generator:
+      enabled: true
+      description: "面向对象类设计生成"
+      design_patterns:
+        - "singleton"
+        - "factory"
+        - "observer"
+        - "strategy"
+        - "decorator"
+      features:
+        - "inheritance_handling"
+        - "interface_implementation"
+        - "property_generation"
+        - "method_scaffolding"
+    
+    # API生成器
+    api_generator:
+      enabled: true
+      description: "REST API代码生成"
+      frameworks:
+        - "fastapi"
+        - "flask"
+        - "express"
+        - "spring_boot"
+        - "gin"
+      features:
+        - "route_definition"
+        - "request_validation"
+        - "response_serialization"
+        - "error_handling"
+        - "authentication"
+    
+    # 模板引擎
+    template_engine:
+      enabled: true
+      description: "代码模板生成"
+      template_types:
+        - "project_scaffolding"
+        - "component_templates"
+        - "configuration_files"
+        - "docker_files"
+      customization: true
+  
+  # 代码分析工具
+  code_analysis:
+    # 静态分析器
+    static_analyzer:
+      enabled: true
+      description: "静态代码分析"
+      analysis_types:
+        - "complexity_analysis"
+        - "dependency_analysis"
+        - "dead_code_detection"
+        - "code_smell_detection"
+      metrics:
+        - "cyclomatic_complexity"
+        - "maintainability_index"
+        - "technical_debt"
+    
+    # 代码质量检查器
+    quality_checker:
+      enabled: true
+      description: "代码质量评估"
+      quality_metrics:
+        - "readability_score"
+        - "performance_score"
+        - "security_score"
+        - "maintainability_score"
+      standards:
+        - "clean_code"
+        - "solid_principles"
+        - "design_patterns"
+    
+    # 依赖分析器
+    dependency_analyzer:
+      enabled: true
+      description: "依赖关系分析"
+      features:
+        - "circular_dependency_detection"
+        - "unused_dependency_detection"
+        - "version_conflict_detection"
+        - "security_vulnerability_scan"
+    
+    # 性能分析器
+    performance_analyzer:
+      enabled: true
+      description: "代码性能分析"
+      analysis_areas:
+        - "algorithm_complexity"
+        - "memory_usage"
+        - "execution_time"
+        - "resource_consumption"
+  
+  # 语法检查工具
+  syntax_checking:
+    # 多语言语法检查器
+    syntax_validator:
+      enabled: true
+      description: "多语言语法验证"
+      languages:
+        python:
+          linters: ["flake8", "pylint", "mypy"]
+          formatters: ["black", "autopep8"]
+        javascript:
+          linters: ["eslint", "jshint"]
+          formatters: ["prettier"]
+        typescript:
+          linters: ["tslint", "@typescript-eslint"]
+          type_checker: "tsc"
+        java:
+          linters: ["checkstyle", "pmd", "spotbugs"]
+          formatter: "google-java-format"
+        go:
+          linters: ["golint", "go vet", "golangci-lint"]
+          formatter: "gofmt"
+    
+    # 代码格式化器
+    code_formatter:
+      enabled: true
+      description: "自动代码格式化"
+      preserve_semantics: true
+      configurable_styles: true
+      batch_processing: true
+    
+    # 编译检查器
+    compilation_checker:
+      enabled: true
+      description: "编译验证检查"
+      compiled_languages: ["java", "c++", "rust", "go"]
+      error_reporting: "detailed"
+  
+  # 安全扫描工具
+  security_scanning:
+    # 安全漏洞扫描器
+    vulnerability_scanner:
+      enabled: true
+      description: "代码安全漏洞检测"
+      scan_types:
+        - "sql_injection"
+        - "xss_vulnerabilities"
+        - "csrf_vulnerabilities"
+        - "insecure_dependencies"
+        - "hardcoded_secrets"
+      severity_levels: ["critical", "high", "medium", "low"]
+    
+    # 密钥检测器
+    secret_detector:
+      enabled: true
+      description: "敏感信息检测"
+      detection_patterns:
+        - "api_keys"
+        - "passwords"
+        - "private_keys"
+        - "connection_strings"
+        - "tokens"
+      false_positive_reduction: true
+    
+    # 权限检查器
+    permission_checker:
+      enabled: true
+      description: "权限和访问控制检查"
+      checks:
+        - "privilege_escalation"
+        - "unauthorized_access"
+        - "data_exposure"
+  
+  # 测试工具
+  testing:
+    # 单元测试生成器
+    unit_test_generator:
+      enabled: true
+      description: "自动单元测试生成"
+      testing_frameworks:
+        python: ["pytest", "unittest"]
+        javascript: ["jest", "mocha"]
+        java: ["junit", "testng"]
+        go: ["testing"]
+      test_types:
+        - "positive_tests"
+        - "negative_tests"
+        - "edge_case_tests"
+        - "boundary_tests"
+    
+    # 测试覆盖率分析器
+    coverage_analyzer:
+      enabled: true
+      description: "测试覆盖率分析"
+      coverage_types:
+        - "line_coverage"
+        - "branch_coverage"
+        - "function_coverage"
+        - "statement_coverage"
+      minimum_threshold: 80
+    
+    # 集成测试助手
+    integration_test_helper:
+      enabled: true
+      description: "集成测试辅助"
+      features:
+        - "mock_generation"
+        - "test_data_generation"
+        - "api_testing"
+        - "database_testing"
+    
+    # 性能测试工具
+    performance_tester:
+      enabled: true
+      description: "代码性能测试"
+      test_types:
+        - "load_testing"
+        - "stress_testing"
+        - "benchmark_testing"
+      profiling: true
+  
+  # 文档工具
+  documentation:
+    # 文档生成器
+    doc_generator:
+      enabled: true
+      description: "自动文档生成"
+      doc_types:
+        - "api_documentation"
+        - "code_documentation"
+        - "user_documentation"
+        - "technical_specifications"
+      formats: ["markdown", "html", "pdf", "rst"]
+    
+    # 注释生成器
+    comment_generator:
+      enabled: true
+      description: "智能注释生成"
+      comment_types:
+        - "function_docstrings"
+        - "inline_comments"
+        - "header_comments"
+        - "todo_comments"
+      style_adaptation: true
+    
+    # README生成器
+    readme_generator:
+      enabled: true
+      description: "项目README生成"
+      sections:
+        - "project_description"
+        - "installation_guide"
+        - "usage_examples"
+        - "api_reference"
+        - "contributing_guidelines"
+  
+  # 重构工具
+  refactoring:
+    # 代码重构器
+    code_refactorer:
+      enabled: true
+      description: "智能代码重构"
+      refactoring_types:
+        - "extract_method"
+        - "extract_class"
+        - "rename_variable"
+        - "move_method"
+        - "inline_method"
+      safety_checks: true
+    
+    # 架构优化器
+    architecture_optimizer:
+      enabled: true
+      description: "架构级别优化"
+      optimizations:
+        - "dependency_injection"
+        - "design_pattern_application"
+        - "layer_separation"
+        - "interface_extraction"
+    
+    # 性能优化器
+    performance_optimizer:
+      enabled: true
+      description: "性能优化建议"
+      optimization_areas:
+        - "algorithm_improvement"
+        - "data_structure_optimization"
+        - "memory_optimization"
+        - "caching_strategies"
+  
+  # 调试工具
+  debugging:
+    # 错误诊断器
+    error_diagnoser:
+      enabled: true
+      description: "错误诊断和解释"
+      error_types:
+        - "syntax_errors"
+        - "runtime_errors"
+        - "logic_errors"
+        - "performance_issues"
+      solution_suggestions: true
+    
+    # 断点建议器
+    breakpoint_suggester:
+      enabled: true
+      description: "智能断点建议"
+      analysis_depth: "deep"
+      context_awareness: true
+    
+    # 日志生成器
+    log_generator:
+      enabled: true
+      description: "调试日志生成"
+      log_levels: ["debug", "info", "warning", "error"]
+      structured_logging: true
+
+# 开发环境集成
+development_integration:
+  # IDE插件支持
+  ide_plugins:
+    vscode:
+      enabled: true
+      extension_id: "code-assistant-ext"
+      features: ["auto_completion", "error_highlighting", "refactoring"]
+    
+    pycharm:
+      enabled: true
+      plugin_name: "CodeAssistant"
+      integration_level: "deep"
+    
+    intellij:
+      enabled: true
+      support_languages: ["java", "kotlin", "scala"]
+  
+  # 版本控制集成
+  version_control:
+    git_integration:
+      enabled: true
+      features:
+        - "commit_message_generation"
+        - "code_review_assistance"
+        - "merge_conflict_resolution"
+        - "branch_analysis"
+    
+    pre_commit_hooks:
+      enabled: true
+      hooks:
+        - "syntax_check"
+        - "security_scan"
+        - "test_execution"
+        - "code_formatting"
+
+# 性能配置
+performance:
+  # 并行处理
+  parallel_processing:
+    enabled: true
+    max_workers: 4
+    task_distribution: "intelligent"
+  
+  # 缓存策略
+  caching:
+    enabled: true
+    cache_types:
+      - "syntax_analysis"
+      - "dependency_graph"
+      - "test_results"
+    cache_duration: 3600
+  
+  # 内存管理
+  memory_management:
+    max_memory_per_task: "1GB"
+    garbage_collection: "aggressive"
+    memory_profiling: true
+
+# 工具优先级
+priorities:
+  critical:
+    - "syntax_validator"
+    - "vulnerability_scanner"
+    - "unit_test_generator"
+  
+  high:
+    - "static_analyzer"
+    - "code_formatter"
+    - "doc_generator"
+  
+  medium:
+    - "performance_analyzer"
+    - "refactoring_tools"
+    - "debugging_tools"
+  
+  low:
+    - "architecture_optimizer"
+    - "performance_optimizer"
+
+# 安全配置
+security:
+  # 工具访问控制
+  access_control:
+    enabled: true
+    role_based: true
+    audit_trail: true
+  
+  # 代码保护
+  code_protection:
+    encrypt_in_transit: true
+    temporary_file_cleanup: true
+    secure_memory_handling: true
+
+# 日志配置
+logging:
+  level: "INFO"
+  log_file: "logs/code_assistant_tools.log"
+  log_tool_usage: true
+  log_performance: true
+  log_security_events: true
+  log_error_details: true 

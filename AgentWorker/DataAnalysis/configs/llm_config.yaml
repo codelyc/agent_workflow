@@ -1,0 +1,161 @@
+# 数据分析场景 - LLM配置
+# 针对数据分析、报告生成、趋势分析等任务优化的LLM配置
+
+llm_config:
+  # 默认模型配置 - 数据分析需要逻辑性强的模型
+  default_model: "gpt-4o"
+  backup_model: "gpt-4o-mini"
+  
+  # 模型参数配置
+  model_parameters:
+    temperature: 0.3        # 较低温度，确保分析的准确性和一致性
+    max_tokens: 6000        # 支持详细的分析报告
+    top_p: 0.8             # 较保守的采样，减少随机性
+    frequency_penalty: 0.2  # 避免重复分析点
+    presence_penalty: 0.1   # 鼓励全面的分析维度
+  
+  # 数据分析特定配置
+  data_analysis:
+    # 数据报告配置
+    report:
+      model: "gpt-4o"
+      temperature: 0.2      # 报告需要最高的准确性
+      max_tokens: 8000      # 支持详细报告
+      system_prompt: |
+        你是一位专业的数据分析师。在进行数据分析时，请：
+        1. 保持客观和准确
+        2. 基于数据得出结论
+        3. 提供可操作的建议
+        4. 指出分析的局限性
+    
+    # 趋势分析配置
+    trend_analysis:
+      model: "gpt-4o"
+      temperature: 0.1      # 趋势分析需要最严格的逻辑
+      max_tokens: 5000
+      system_prompt: |
+        你是趋势分析专家。分析时请：
+        1. 识别历史模式
+        2. 评估当前状态
+        3. 谨慎预测未来趋势
+        4. 量化不确定性
+    
+    # 对比分析配置
+    comparison:
+      model: "gpt-4o-mini"
+      temperature: 0.3
+      max_tokens: 4000
+      system_prompt: |
+        你是对比分析专家。请：
+        1. 客观比较各项指标
+        2. 识别显著差异
+        3. 分析差异原因
+        4. 提供平衡的评估
+    
+    # 洞察生成配置
+    insights:
+      model: "gpt-4o"
+      temperature: 0.4      # 洞察需要一定创造性
+      max_tokens: 3000
+      system_prompt: |
+        你是商业洞察专家。请：
+        1. 从数据中发现深层洞察
+        2. 连接业务价值
+        3. 识别机会和风险
+        4. 提供战略建议
+  
+  # 提供商配置
+  providers:
+    primary: "openai"
+    fallback: ["azure_openai", "anthropic"]
+  
+  # OpenAI配置
+  openai:
+    api_key_env: "OPENAI_API_KEY"
+    base_url: "https://api.openai.com/v1"
+    timeout: 90           # 数据分析可能需要更长时间
+    max_retries: 3
+  
+  # Azure OpenAI配置
+  azure_openai:
+    api_key_env: "AZURE_OPENAI_API_KEY"
+    endpoint_env: "AZURE_OPENAI_ENDPOINT"
+    api_version: "2024-02-01"
+    timeout: 90
+  
+  # Anthropic配置 (Claude在分析任务上表现优秀)
+  anthropic:
+    api_key_env: "ANTHROPIC_API_KEY"
+    model: "claude-3-sonnet-20240229"
+    timeout: 90
+  
+  # 数据验证配置
+  data_validation:
+    enabled: true
+    fact_checking: true
+    consistency_check: true
+    logic_validation: true
+  
+  # 多轮对话配置 (用于复杂分析)
+  conversation:
+    enabled: true
+    max_turns: 5
+    context_window: 16000
+    memory_type: "sliding_window"
+  
+  # 缓存配置
+  caching:
+    enabled: true
+    cache_duration: 7200    # 2小时缓存，分析结果相对稳定
+    cache_analysis_results: true
+    invalidate_on_data_change: true
+  
+  # 速率限制
+  rate_limits:
+    requests_per_minute: 30  # 分析请求通常较复杂，限制更严格
+    tokens_per_minute: 120000
+    concurrent_requests: 3   # 数据分析串行处理更可靠
+
+# 分析质量控制
+quality_control:
+  # 结果验证
+  result_validation:
+    enabled: true
+    cross_validate: true
+    confidence_threshold: 0.8
+  
+  # 偏差检测
+  bias_detection:
+    enabled: true
+    check_statistical_bias: true
+    check_confirmation_bias: true
+  
+  # 准确性检查
+  accuracy_check:
+    enabled: true
+    fact_verification: true
+    calculation_verification: true
+
+# 专业术语配置
+terminology:
+  # 数据分析术语词典
+  dictionary: "dictionaries/data_analysis_terms.json"
+  
+  # 统计术语
+  statistical_terms:
+    enabled: true
+    precision_mode: true
+  
+  # 业务术语
+  business_terms:
+    enabled: true
+    industry_specific: ["finance", "marketing", "operations"]
+
+# 日志配置
+logging:
+  level: "INFO"
+  log_file: "logs/data_analysis_llm.log"
+  log_requests: true
+  log_responses: true     # 分析结果需要完整日志
+  log_analysis_steps: true
+  log_data_validation: true 

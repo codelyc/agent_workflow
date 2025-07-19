@@ -1,0 +1,209 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-agents-workflow"
+version = "1.0.0"
+description = "AI Agents Workflow 通用开发流程 - 基于SmolaAgents的分层智能代理系统"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "AI Agents Team"},
+]
+keywords = ["ai", "agents", "workflow", "smolagents", "automation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# 核心依赖
+dependencies = [
+    # 核心框架
+    "smolagents>=0.1.0",
+    # 系统和配置管理
+    "psutil>=5.9.0",
+    "pyyaml>=6.0",
+    "dataclasses>=0.6; python_version<'3.7'",
+    # 网络和请求
+    "requests>=2.28.0",
+    "urllib3>=1.26.0",
+    # 代码分析工具
+    "tree-sitter>=0.20.0",
+    "tree-sitter-languages>=1.8.0",
+    "radon>=5.1.0",
+    "lizard>=1.17.0",
+    "vulture>=2.6",
+    "bandit>=1.7.0",
+    "astunparse>=1.6.0",
+    # 容器和运行时
+    "docker>=6.0.0",
+    # 追踪和监控
+    "langfuse>=2.0.0",
+    # LLM调用
+    "litellm>=1.0.0",
+    # UI和输出
+    "rich>=13.0.0",
+    "colorama>=0.4.0",
+    "tabulate>=0.9.0",
+    "tqdm>=4.64.0",
+    # 命令行
+    "click>=8.0.0",
+    # 数据处理
+    "pandas>=1.5.0",
+    "numpy>=1.21.0",
+    "jsonschema>=4.25.0",
+    # 调度和任务管理
+    "schedule>=1.2.0",
+]
+
+[project.optional-dependencies]
+# 开发依赖
+dev = [
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=0.991",
+    "isort>=5.10.0",
+    "pre-commit>=2.20.0",
+]
+
+# 测试依赖
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.10.0",
+]
+
+# 文档依赖
+docs = [
+    "mkdocs>=1.4.0",
+    "mkdocs-material>=8.5.0",
+    "mkdocstrings[python]>=0.19.0",
+]
+
+# 所有依赖
+all = ["ai-agents-workflow[dev,test,docs]"]
+
+[project.urls]
+Homepage = "https://github.com/your-org/ai-agents-workflow"
+Documentation = "https://your-org.github.io/ai-agents-workflow"
+Repository = "https://github.com/your-org/ai-agents-workflow"
+Issues = "https://github.com/your-org/ai-agents-workflow/issues"
+
+[project.scripts]
+ai-agents = "ai_agents.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ai_agents*"]
+exclude = ["tests*", "docs*", "examples*"]
+
+[tool.setuptools.package-data]
+ai_agents = ["sop_workflows/**/*.md", "templates/**/*.yaml", "configs/**/*.yaml"]
+
+# Black 配置
+[tool.black]
+line-length = 100
+target-version = ['py310']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+# isort 配置
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 100
+known_first_party = ["ai_agents"]
+
+# mypy 配置
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "smolagents.*",
+    "langfuse.*",
+    "docker.*",
+    "tree_sitter.*",
+    "radon.*",
+    "lizard.*",
+    "vulture.*",
+    "bandit.*",
+]
+ignore_missing_imports = true
+
+# pytest 配置
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=ai_agents",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+# Coverage 配置
+[tool.coverage.run]
+source = ["ai_agents"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/migrations/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+] 

@@ -1,0 +1,203 @@
+# 内容生成场景 - Agent输出控制配置
+# 针对文章、博客、营销文案等内容生成的专门配置
+
+config_type: "output_control"
+version: "1.0"
+scenario: "content_generation"
+created_at: "2025-01-19"
+
+# 全局设置
+global:
+  enabled: true
+  max_retry_attempts: 3
+  timeout_seconds: 60
+  debug_mode: false
+  save_intermediate_results: true
+
+# 前置约束配置 - 针对内容生成
+pre_constraints:
+  # 内容结构约束
+  content_constraints:
+    - name: "content_structure"
+      description: "内容必须包含标题、正文、结论"
+      type: "content"
+      required: true
+      required_elements: ["标题", "正文", "结论"]
+      case_sensitive: false
+    
+    - name: "no_sensitive_content"
+      description: "禁止生成敏感或不当内容"
+      type: "content"
+      required: true
+      blacklist_patterns: ["政治敏感", "暴力", "色情", "恶意攻击"]
+      case_sensitive: false
+      
+  # 长度约束
+  length_constraints:
+    - name: "content_length"
+      description: "内容长度要求"
+      type: "length"
+      required: true
+      min_length: 200
+      max_length: 5000
+      
+  # 格式约束
+  format_constraints:
+    - name: "markdown_format"
+      description: "使用Markdown格式"
+      type: "format"
+      pattern: "^#.*"
+      required: false
+      examples:
+        - "# 主标题\n\n## 副标题\n\n正文内容..."
+
+# 验证配置
+validation:
+  # 内容质量验证
+  content_validation:
+    enabled: true
+    spell_check: true
+    grammar_check: true
+    fact_check: false
+    
+  # AI自检验证
+  ai_self_check:
+    enabled: true
+    model: "gpt-4o-mini"
+    check_prompts:
+      content_quality: |
+        请评估以下内容的质量：
+        
+        内容：
+        {output}
+        
+        评估标准：
+        1. 可读性 (1-10分)
+        2. 信息价值 (1-10分)
+        3. 结构完整性 (1-10分)
+        4. 语言流畅度 (1-10分)
+        
+        请以JSON格式回答：{"readability": 数字, "value": 数字, "structure": 数字, "fluency": 数字, "overall": 数字, "feedback": "详细反馈"}
+        
+      engagement_check: |
+        请评估内容的吸引力和参与度：
+        
+        内容：
+        {output}
+        
+        请以JSON格式回答：{"engaging": true/false, "suggestions": ["改进建议1", "改进建议2"]}
+
+# 后处理配置
+post_processing:
+  # 文本处理
+  text_processing:
+    enabled: true
+    strip_whitespace: true
+    normalize_line_endings: true
+    remove_empty_lines: false
+    
+  # 格式化处理
+  formatting:
+    enabled: true
+    auto_format_markdown: true
+    prettify_code_blocks: true
+    
+  # 内容补全
+  completion:
+    enabled: true
+    add_missing_sections: true
+    generate_summary: true
+    add_metadata: true
+    
+  # 内容优化
+  optimization:
+    enabled: true
+    enhance_readability: true
+    add_keywords: false
+    seo_optimization: false
+
+# Re-prompt配置
+re_prompt:
+  enabled: true
+  max_attempts: 3
+  strategy: "progressive"
+  
+  templates:
+    content_improvement: |
+      你生成的内容需要改进。请根据以下反馈重新生成：
+      
+      原始要求：{original_question}
+      
+      内容问题：
+      {content_issues}
+      
+      改进要求：
+      1. 确保内容结构完整（标题、正文、结论）
+      2. 提升内容的可读性和吸引力
+      3. 保持语言流畅自然
+      4. 增加实用价值
+      
+      请重新生成改进后的内容：
+      
+    format_fix: |
+      你的内容格式不符合要求。请按照以下格式重新生成：
+      
+      原始要求：{original_question}
+      
+      格式要求：
+      - 使用Markdown格式
+      - 包含清晰的标题结构
+      - 正文分段合理
+      - 长度控制在200-5000字之间
+      
+      格式错误：{validation_errors}
+      
+      请重新生成符合格式的内容：
+
+# 输出类型特定配置
+output_types:
+  # 文章生成
+  article:
+    pre_constraints:
+      - name: "article_structure"
+        sections: ["引言", "主体", "结论"]
+        min_sections: 3
+    post_processing:
+      - name: "add_toc"
+        enabled: true
+        
+  # 营销文案
+  marketing:
+    pre_constraints:
+      - name: "call_to_action"
+        required_elements: ["行动召唤", "价值主张"]
+    validation:
+      - name: "persuasiveness_check"
+        enabled: true
+        
+  # 博客文章
+  blog:
+    pre_constraints:
+      - name: "blog_style"
+        tone: "conversational"
+        personal_touch: true
+    post_processing:
+      - name: "add_tags"
+        enabled: true
+
+# 质量标准
+quality_standards:
+  readability_score: 7.0
+  value_score: 7.0
+  structure_score: 8.0
+  fluency_score: 8.0
+  overall_threshold: 7.5
+
+# 日志配置
+logging:
+  enabled: true
+  level: "INFO"
+  log_file: "logs/content_generation_output_control.log"
+  log_validation_details: true
+  log_processing_steps: true
+  log_re_prompt_attempts: true 

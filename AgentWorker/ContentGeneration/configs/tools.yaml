@@ -1,0 +1,232 @@
+# 内容生成场景 - 工具配置
+# 针对内容创作任务的专用工具集
+
+tools_config:
+  # 启用的工具类别
+  enabled_categories:
+    - "text_processing"     # 文本处理工具
+    - "content_analysis"    # 内容分析工具
+    - "research"           # 研究和资料收集工具
+    - "formatting"         # 格式化工具
+    - "quality_check"      # 质量检查工具
+  
+  # 文本处理工具
+  text_processing:
+    # 文本清理工具
+    text_cleaner:
+      enabled: true
+      description: "清理和规范化文本内容"
+      functions:
+        - "remove_extra_whitespace"
+        - "fix_punctuation"
+        - "standardize_quotes"
+        - "remove_special_chars"
+    
+    # 文本统计工具
+    text_analyzer:
+      enabled: true
+      description: "分析文本统计信息"
+      functions:
+        - "word_count"
+        - "character_count"
+        - "readability_score"
+        - "keyword_density"
+    
+    # 文本格式化工具
+    text_formatter:
+      enabled: true
+      description: "格式化文本为不同样式"
+      functions:
+        - "markdown_formatter"
+        - "html_formatter"
+        - "plain_text_formatter"
+  
+  # 内容分析工具
+  content_analysis:
+    # 语言检测工具
+    language_detector:
+      enabled: true
+      description: "检测文本语言"
+      supported_languages: ["zh", "en", "ja", "ko", "fr", "de", "es"]
+    
+    # 情感分析工具
+    sentiment_analyzer:
+      enabled: true
+      description: "分析文本情感倾向"
+      provider: "transformers"
+      model: "bert-base-chinese"
+    
+    # 关键词提取工具
+    keyword_extractor:
+      enabled: true
+      description: "提取文本关键词"
+      methods: ["tfidf", "textrank", "yake"]
+      max_keywords: 10
+    
+    # 内容相似度检查
+    similarity_checker:
+      enabled: true
+      description: "检查内容相似度"
+      threshold: 0.8
+      method: "sentence_transformers"
+  
+  # 研究工具
+  research:
+    # 网络搜索工具 (需要API)
+    web_search:
+      enabled: false  # 默认关闭，需要配置API
+      description: "网络信息搜索"
+      provider: "serper"  # 或 "google", "bing"
+      api_key_env: "SERPER_API_KEY"
+      max_results: 10
+    
+    # 知识库查询工具
+    knowledge_base:
+      enabled: true
+      description: "查询内置知识库"
+      sources: ["wikipedia", "common_knowledge"]
+    
+    # 事实检查工具
+    fact_checker:
+      enabled: true
+      description: "基础事实检查"
+      use_llm: true
+      confidence_threshold: 0.7
+  
+  # 格式化工具
+  formatting:
+    # Markdown工具
+    markdown_tools:
+      enabled: true
+      description: "Markdown格式处理"
+      functions:
+        - "add_table_of_contents"
+        - "format_headers"
+        - "validate_links"
+        - "optimize_images"
+    
+    # 模板工具
+    template_engine:
+      enabled: true
+      description: "内容模板处理"
+      template_directory: "templates/content"
+      supported_formats: ["jinja2", "mustache"]
+  
+  # 质量检查工具
+  quality_check:
+    # 拼写检查工具
+    spell_checker:
+      enabled: true
+      description: "拼写检查"
+      language: "zh-CN"
+      custom_dictionary: "dictionaries/content_terms.txt"
+    
+    # 语法检查工具
+    grammar_checker:
+      enabled: true
+      description: "语法检查"
+      provider: "local"  # 或 "grammarly_api"
+      language: "zh-CN"
+    
+    # 风格检查工具
+    style_checker:
+      enabled: true
+      description: "写作风格检查"
+      rules:
+        - "avoid_passive_voice"
+        - "check_sentence_length"
+        - "avoid_repetition"
+        - "check_tone_consistency"
+    
+    # 原创性检查工具
+    plagiarism_checker:
+      enabled: false  # 默认关闭，需要第三方API
+      description: "原创性检查"
+      provider: "copyscape"  # 或其他提供商
+      api_key_env: "COPYSCAPE_API_KEY"
+  
+  # 内容增强工具
+  content_enhancement:
+    # 同义词替换工具
+    synonym_replacer:
+      enabled: true
+      description: "智能同义词替换"
+      dictionary: "synonyms/chinese.json"
+      preserve_context: true
+    
+    # 内容扩展工具
+    content_expander:
+      enabled: true
+      description: "智能内容扩展"
+      use_llm: true
+      expansion_strategies:
+        - "add_examples"
+        - "add_explanations"
+        - "add_transitions"
+    
+    # 内容压缩工具
+    content_summarizer:
+      enabled: true
+      description: "智能内容摘要"
+      methods: ["extractive", "abstractive"]
+      max_summary_ratio: 0.3
+  
+  # 多媒体工具
+  multimedia:
+    # 图片生成工具 (可选)
+    image_generator:
+      enabled: false
+      description: "AI图片生成"
+      provider: "dall-e"  # 或 "midjourney", "stable-diffusion"
+      api_key_env: "OPENAI_API_KEY"
+    
+    # 图片优化工具
+    image_optimizer:
+      enabled: true
+      description: "图片压缩和优化"
+      max_width: 1200
+      quality: 85
+      formats: ["webp", "jpg", "png"]
+
+# 工具执行配置
+execution:
+  # 并发配置
+  concurrency:
+    max_parallel_tools: 3
+    timeout_per_tool: 30
+  
+  # 错误处理
+  error_handling:
+    retry_failed_tools: true
+    max_retries: 2
+    fallback_enabled: true
+  
+  # 结果缓存
+  caching:
+    enabled: true
+    cache_duration: 1800  # 30分钟
+    cache_tool_results: true
+
+# 工具优先级配置
+priorities:
+  high_priority:
+    - "text_cleaner"
+    - "spell_checker"
+    - "grammar_checker"
+  
+  medium_priority:
+    - "keyword_extractor"
+    - "sentiment_analyzer"
+    - "markdown_tools"
+  
+  low_priority:
+    - "web_search"
+    - "image_generator"
+    - "plagiarism_checker"
+
+# 日志配置
+logging:
+  level: "INFO"
+  log_file: "logs/content_generation_tools.log"
+  log_tool_usage: true
+  log_performance: true 

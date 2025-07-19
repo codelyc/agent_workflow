@@ -1,0 +1,223 @@
+# 数据分析场景 - Agent输出控制配置
+# 针对数据报告、分析结果、图表解读等的专门配置
+
+config_type: "output_control"
+version: "1.0"
+scenario: "data_analysis"
+created_at: "2025-01-19"
+
+# 全局设置
+global:
+  enabled: true
+  max_retry_attempts: 3
+  timeout_seconds: 45
+  debug_mode: false
+  save_intermediate_results: true
+
+# 前置约束配置 - 针对数据分析
+pre_constraints:
+  # 分析结构约束
+  content_constraints:
+    - name: "analysis_structure"
+      description: "分析报告必须包含关键要素"
+      type: "content"
+      required: true
+      required_elements: ["数据概述", "关键发现", "分析结论", "建议"]
+      case_sensitive: false
+    
+    - name: "data_accuracy"
+      description: "确保数据准确性和客观性"
+      type: "content"
+      required: true
+      blacklist_patterns: ["未经验证", "主观臆测", "无根据推断"]
+      case_sensitive: false
+      
+  # 长度约束 - 数据分析通常需要详细
+  length_constraints:
+    - name: "analysis_length"
+      description: "分析内容长度要求"
+      type: "length"
+      required: true
+      min_length: 300
+      max_length: 8000
+      
+  # 格式约束 - 支持图表和代码
+  format_constraints:
+    - name: "structured_format"
+      description: "使用结构化格式展示分析"
+      type: "format"
+      pattern: "^#.*"
+      required: false
+      examples:
+        - "# 数据分析报告\n\n## 数据概述\n\n## 关键发现\n\n## 结论与建议"
+
+# 验证配置
+validation:
+  # 数据验证
+  content_validation:
+    enabled: true
+    spell_check: true
+    grammar_check: true
+    fact_check: true  # 数据分析需要事实检查
+    
+  # AI自检验证
+  ai_self_check:
+    enabled: true
+    model: "gpt-4o-mini"
+    check_prompts:
+      analysis_quality: |
+        请评估以下数据分析的质量：
+        
+        分析内容：
+        {output}
+        
+        评估标准：
+        1. 逻辑性 (1-10分) - 分析逻辑是否清晰
+        2. 准确性 (1-10分) - 数据和结论是否准确
+        3. 完整性 (1-10分) - 是否涵盖关键要点
+        4. 实用性 (1-10分) - 建议是否可行
+        
+        请以JSON格式回答：{"logic": 数字, "accuracy": 数字, "completeness": 数字, "usefulness": 数字, "overall": 数字, "feedback": "详细反馈"}
+        
+      data_consistency: |
+        请检查数据分析的一致性：
+        
+        分析内容：
+        {output}
+        
+        检查要点：
+        1. 数据引用是否一致
+        2. 结论是否与数据支持
+        3. 是否存在逻辑矛盾
+        
+        请以JSON格式回答：{"consistent": true/false, "issues": ["问题1", "问题2"], "suggestions": ["建议1", "建议2"]}
+
+# 后处理配置
+post_processing:
+  # 文本处理
+  text_processing:
+    enabled: true
+    strip_whitespace: true
+    normalize_line_endings: true
+    remove_empty_lines: false
+    
+  # 格式化处理
+  formatting:
+    enabled: true
+    auto_format_markdown: true
+    prettify_code_blocks: true
+    format_tables: true
+    
+  # 数据处理
+  data_processing:
+    enabled: true
+    validate_numbers: true
+    format_percentages: true
+    standardize_units: true
+    
+  # 补全处理
+  completion:
+    enabled: true
+    add_missing_sections: true
+    generate_executive_summary: true
+    add_data_sources: true
+
+# Re-prompt配置
+re_prompt:
+  enabled: true
+  max_attempts: 2  # 数据分析重试次数较少，避免偏离数据
+  strategy: "conservative"
+  
+  templates:
+    analysis_improvement: |
+      你的数据分析需要改进。请根据以下反馈重新分析：
+      
+      原始要求：{original_question}
+      
+      分析问题：
+      {content_issues}
+      
+      改进要求：
+      1. 确保分析逻辑清晰，结论有数据支撑
+      2. 包含完整的分析要素（数据概述、发现、结论、建议）
+      3. 保持客观性，避免主观臆测
+      4. 提供可行的建议
+      
+      请重新进行数据分析：
+      
+    data_verification: |
+      你的分析中存在数据问题。请验证并重新分析：
+      
+      原始要求：{original_question}
+      
+      数据问题：
+      {validation_errors}
+      
+      验证要求：
+      - 检查数据引用的准确性
+      - 确保计算结果正确
+      - 验证结论与数据的一致性
+      
+      请重新提供验证后的分析：
+
+# 输出类型特定配置
+output_types:
+  # 数据报告
+  report:
+    pre_constraints:
+      - name: "report_structure"
+        sections: ["执行摘要", "数据概述", "详细分析", "结论建议"]
+        min_sections: 4
+    post_processing:
+      - name: "add_charts_placeholder"
+        enabled: true
+        
+  # 趋势分析
+  trend_analysis:
+    pre_constraints:
+      - name: "trend_elements"
+        required_elements: ["历史趋势", "当前状态", "未来预测"]
+    validation:
+      - name: "trend_logic_check"
+        enabled: true
+        
+  # 对比分析
+  comparison:
+    pre_constraints:
+      - name: "comparison_structure"
+        required_elements: ["对比维度", "差异分析", "优劣势"]
+    post_processing:
+      - name: "comparison_table"
+        enabled: true
+
+# 数据质量标准
+quality_standards:
+  logic_score: 8.0
+  accuracy_score: 9.0
+  completeness_score: 8.0
+  usefulness_score: 7.5
+  overall_threshold: 8.0
+
+# 特殊处理规则
+special_rules:
+  # 数字格式化
+  number_formatting:
+    decimal_places: 2
+    thousand_separator: ","
+    percentage_format: "0.00%"
+    
+  # 图表处理
+  chart_processing:
+    require_data_source: true
+    validate_chart_data: true
+    add_chart_descriptions: true
+
+# 日志配置
+logging:
+  enabled: true
+  level: "INFO"
+  log_file: "logs/data_analysis_output_control.log"
+  log_validation_details: true
+  log_processing_steps: true
+  log_re_prompt_attempts: true
+  log_data_validation: true 

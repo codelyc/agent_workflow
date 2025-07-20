@@ -13,6 +13,7 @@ from smolagents import CodeAgent, ToolCollection
 from .base_supervisor_agent import BaseSupervisorAgent
 from core.config.agent_config import AgentConfig, ToolConfig, AgentType, TaskCategory
 from core.config.config_manager import ConfigManager
+from core.config.llm_manager import get_llm_manager
 from core.tracing import task_context, sub_task_context, trace_event
 
 logger = logging.getLogger(__name__)
@@ -22,16 +23,17 @@ class SmolaAgentsSupervisor(BaseSupervisorAgent):
     """基于SmolaAgents的监督智能体"""
     
     def __init__(self, config: AgentConfig, config_manager: Optional[ConfigManager] = None):
+        # 先设置配置，因为基类初始化会调用 name 属性
+        self.config = config
+        self.config_manager = config_manager or ConfigManager()
+        
         # 初始化基类
         super().__init__(
             model=config.model.name,
-            max_steps=config.max_steps,
-            timeout=config.timeout,
-            workspace_path=config.workspace_path
+            max_steps=getattr(config, 'max_steps', 10),
+            timeout=getattr(config, 'timeout', 300),
+            workspace_path=getattr(config, 'workspace_path', None)
         )
-        
-        self.config = config
-        self.config_manager = config_manager or ConfigManager()
         
         # 创建SmolaAgents实例
         self._create_smolagents_instance()
@@ -58,20 +60,24 @@ class SmolaAgentsSupervisor(BaseSupervisorAgent):
         try:
             # 准备工具集合
             tools = self._prepare_tools()
-            tool_collection = ToolCollection(tools)
+            
+            # 通过 LLMManager 创建模型对象
+            llm_manager = get_llm_manager()
+            model = llm_manager.create_smolagents_model(self.config.model.name)
             
             # 创建CodeAgent
             self.smolagent = CodeAgent(
-                tools=tool_collection,
-                model=self.config.model.name,
+                tools=tools,
+                model=model,
                 max_steps=self.config.max_steps,
                 **self._get_smolagents_kwargs()
             )
             
+            logger.info(f"SmolaAgents实例创建成功，使用模型: {self.config.model.name}")
+            
         except Exception as e:
             logger.error(f"创建SmolaAgents实例失败: {e}")
-            # 使用mock实例
-            self.smolagent = CodeAgent()
+            self.smolagent = None
     
     def _prepare_tools(self) -> List:
         """准备工具列表"""
@@ -111,21 +117,8 @@ class SmolaAgentsSupervisor(BaseSupervisorAgent):
         """获取SmolaAgents参数"""
         kwargs = {}
         
-        # 模型配置
-        if self.config.model.api_key:
-            kwargs['api_key'] = self.config.model.api_key
-        if self.config.model.base_url:
-            kwargs['base_url'] = self.config.model.base_url
-        if self.config.model.temperature:
-            kwargs['temperature'] = self.config.model.temperature
-        if self.config.model.max_tokens:
-            kwargs['max_tokens'] = self.config.model.max_tokens
-        
-        # 系统提示
-        if self.config.system_prompt:
-            kwargs['system_prompt'] = self.config.system_prompt
-        elif self.config.system_prompt_template:
-            kwargs['system_prompt'] = self._format_system_prompt()
+        # 注意：CodeAgent不支持system_prompt等参数
+        # 系统提示应该通过其他方式设置，比如在任务描述中包含
         
         return kwargs
     
@@ -229,9 +222,14 @@ class SmolaAgentsSupervisor(BaseSupervisorAgent):
         from datetime import datetime
         return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
-    def run_with_smolagents(self, task: str) -> str:
-        """使用SmolaAgents运行任务"""
+    def run(self, task: str, task_id: Optional[str] = None) -> str:
+        """执行任务 - 优先使用SmolaAgents，失败时降级到基础实现"""
         try:
+            # 检查smolagent是否可用
+            if self.smolagent is None:
+                logger.warning("SmolaAgents实例不可用，使用基础实现")
+                return super().run(task, task_id)
+            
             with trace_event("smolagents_execution", "supervisor_run", task=task):
                 # 构建增强的任务描述
                 enhanced_task = self._enhance_task_description(task)
@@ -239,12 +237,17 @@ class SmolaAgentsSupervisor(BaseSupervisorAgent):
                 # 使用SmolaAgents执行
                 result = self.smolagent.run(enhanced_task)
                 
-                return result
+                # 将RunResult转换为字符串
+                return str(result)
                 
         except Exception as e:
             logger.error(f"SmolaAgents执行失败: {e}")
             # 降级到基础实现
-            return super().run(task)
+            return super().run(task, task_id)
+    
+    def run_with_smolagents(self, task: str) -> str:
+        """使用SmolaAgents运行任务（向后兼容方法）"""
+        return self.run(task)
     
     def _enhance_task_description(self, task: str) -> str:
         """增强任务描述"""

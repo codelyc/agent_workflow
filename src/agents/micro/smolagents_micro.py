@@ -5,6 +5,7 @@
 """
 
 import logging
+import os
 from typing import Dict, List, Any, Optional
 
 from smolagents import CodeAgent, ToolCollection
@@ -12,6 +13,7 @@ from smolagents import CodeAgent, ToolCollection
 from .base_micro_agent import BaseMicroAgent
 from core.config.agent_config import AgentConfig, ToolConfig
 from core.config.config_manager import ConfigManager
+from core.config.llm_manager import get_llm_manager
 from core.tracing import trace_event
 from core.task_types.task_types import TaskType
 
@@ -22,6 +24,10 @@ class SmolaAgentsMicro(BaseMicroAgent):
     """基于SmolaAgents的微智能体"""
     
     def __init__(self, config: AgentConfig, config_manager: Optional[ConfigManager] = None):
+        # 先设置配置，因为基类初始化会调用_get_tools()方法
+        self.config = config
+        self.config_manager = config_manager or ConfigManager()
+        
         # 初始化基类
         super().__init__(
             model=config.model.name,
@@ -29,9 +35,6 @@ class SmolaAgentsMicro(BaseMicroAgent):
             timeout=config.timeout,
             workspace_path=config.workspace_path
         )
-        
-        self.config = config
-        self.config_manager = config_manager or ConfigManager()
         
         # 创建SmolaAgents实例
         self._create_smolagents_instance()
@@ -55,20 +58,24 @@ class SmolaAgentsMicro(BaseMicroAgent):
         try:
             # 准备工具集合
             tools = self._prepare_tools()
-            tool_collection = ToolCollection(tools)
+            
+            # 通过 LLMManager 创建模型对象
+            llm_manager = get_llm_manager()
+            model = llm_manager.create_smolagents_model(self.config.model.name)
             
             # 创建CodeAgent
             self.smolagent = CodeAgent(
-                tools=tool_collection,
-                model=self.config.model.name,
+                tools=tools,
+                model=model,
                 max_steps=self.config.max_steps,
                 **self._get_smolagents_kwargs()
             )
             
+            logger.info(f"SmolaAgents实例创建成功，使用模型: {self.config.model.name}")
+            
         except Exception as e:
             logger.error(f"创建SmolaAgents实例失败: {e}")
-            # 使用mock实例
-            self.smolagent = CodeAgent()
+            self.smolagent = None
     
     def _prepare_tools(self) -> List:
         """准备工具列表"""
@@ -108,23 +115,8 @@ class SmolaAgentsMicro(BaseMicroAgent):
         """获取SmolaAgents参数"""
         kwargs = {}
         
-        # 模型配置
-        if self.config.model.api_key:
-            kwargs['api_key'] = self.config.model.api_key
-        if self.config.model.base_url:
-            kwargs['base_url'] = self.config.model.base_url
-        if self.config.model.temperature:
-            kwargs['temperature'] = self.config.model.temperature
-        if self.config.model.max_tokens:
-            kwargs['max_tokens'] = self.config.model.max_tokens
-        
-        # 系统提示
-        if self.config.system_prompt:
-            kwargs['system_prompt'] = self.config.system_prompt
-        elif self.config.system_prompt_template:
-            kwargs['system_prompt'] = self._format_system_prompt()
-        else:
-            kwargs['system_prompt'] = self._get_default_system_prompt()
+        # 注意：CodeAgent不支持system_prompt等参数
+        # 系统提示应该通过其他方式设置，比如在任务描述中包含
         
         return kwargs
     
@@ -177,6 +169,10 @@ Always respond in Chinese (中文) unless specifically requested otherwise."""
     def _execute_task(self, task: str, context: Optional[Dict[str, Any]] = None) -> str:
         """执行核心任务逻辑"""
         try:
+            # 检查smolagent是否可用
+            if self.smolagent is None:
+                return f"智能体未正确初始化，无法执行任务: {task}"
+            
             with trace_event("smolagents_micro_execution", "task_execution", 
                            agent=self.name, task=task):
                 # 构建增强的任务描述
@@ -185,7 +181,8 @@ Always respond in Chinese (中文) unless specifically requested otherwise."""
                 # 使用SmolaAgents执行
                 result = self.smolagent.run(enhanced_task)
                 
-                return result
+                # 将 RunResult 转换为字符串返回
+                return str(result)
                 
         except Exception as e:
             logger.error(f"SmolaAgents微智能体执行失败: {e}")

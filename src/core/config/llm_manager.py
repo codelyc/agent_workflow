@@ -223,7 +223,7 @@ class LLMManager:
         """获取模型配置"""
         return self.models.get(model_name)
     
-    def get_default_model(self, task_type: str = None) -> Optional[ModelConfig]:
+    def get_default_model(self, task_type: Optional[str] = None) -> Optional[ModelConfig]:
         """获取默认模型"""
         if task_type and task_type in self.config.get("task_model_mapping", {}):
             model_name = self.config["task_model_mapping"][task_type]["default"]
@@ -394,6 +394,42 @@ class LLMManager:
             issues.append("无法获取默认模型")
         
         return issues
+    
+    def create_smolagents_model(self, model_name: Optional[str] = None):
+        """为 smolagents 创建模型对象"""
+        from smolagents import LiteLLMModel
+        
+        # 获取模型配置
+        if model_name:
+            model_config = self.get_model_config(model_name)
+        else:
+            model_config = self.get_default_model()
+        
+        if not model_config:
+            raise ValueError(f"无法找到模型配置: {model_name or '默认模型'}")
+        
+        # 使用 LiteLLMModel 创建模型对象，支持多种提供商
+        model_kwargs = {
+            "model_id": model_config.name,
+            "temperature": model_config.temperature,
+            "max_tokens": model_config.max_tokens
+        }
+        
+        # 添加 API 密钥
+        if model_config.api_key:
+            model_kwargs["api_key"] = model_config.api_key
+        
+        # 添加基础 URL（如果有）
+        if model_config.base_url:
+            model_kwargs["api_base"] = model_config.base_url
+        
+        # 对于 Azure OpenAI，需要特殊处理
+        if model_config.provider == LLMProvider.AZURE_OPENAI:
+            # Azure OpenAI 的模型 ID 格式通常是 azure/deployment_name
+            if hasattr(model_config, 'deployment_name') and model_config.deployment_name:
+                model_kwargs["model_id"] = f"azure/{model_config.deployment_name}"
+        
+        return LiteLLMModel(**model_kwargs)
 
 
 # 全局 LLM 管理器实例

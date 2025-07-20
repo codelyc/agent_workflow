@@ -60,7 +60,7 @@ def load_tracing_config() -> TracingConfig:
     return config
 
 
-def setup_tracing_from_config(config: TracingConfig = None):
+def setup_tracing_from_config(config: Optional[TracingConfig] = None):
     """根据配置设置追踪"""
     if config is None:
         config = load_tracing_config()
@@ -69,7 +69,7 @@ def setup_tracing_from_config(config: TracingConfig = None):
         logger.info("追踪功能已禁用")
         return
     
-    from .tracing import enable_llm_tracing
+    from ..tracing import enable_llm_tracing
     
     if config.provider == "langfuse" and config.langfuse:
         # 启用Langfuse追踪
@@ -92,7 +92,7 @@ def get_langfuse_config() -> Optional[LangfuseConfig]:
     return config.langfuse
 
 
-def setup_langfuse_env(public_key: str, private_key: str, host: str = None):
+def setup_langfuse_env(public_key: str, private_key: str, host: Optional[str] = None):
     """设置Langfuse环境变量"""
     os.environ["LANGFUSE_PUBLIC_KEY"] = public_key
     os.environ["LANGFUSE_SECRET_KEY"] = private_key
@@ -109,5 +109,5 @@ def clear_langfuse_env():
         if var in os.environ:
             del os.environ[var]
     
-    logger.info("Langfuse环境变量已清除") 
+    logger.info("Langfuse环境变量已清除")
  
